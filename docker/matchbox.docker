@@ -1,0 +1,18 @@
+docker run \
+  --net=host \
+  --name=matchbox \
+  --restart=unless-stopped \
+  --volume /var/lib/matchbox:/var/lib/matchbox:Z \
+  --volume /etc/matchbox:/etc/matchbox:Z,ro \
+  quay.io/poseidon/matchbox:latest \
+    -address=0.0.0.0:8080 \
+    -rpc-address=0.0.0.0:8081 \
+    -log-level=debug
+
+#docker run \
+#  -p 8080:8080 \
+#  -v $PWD/examples:/var/lib/matchbox:Z \
+#  -v $PWD/examples/groups/etcd3:/var/lib/matchbox/groups:Z \
+#  quay.io/poseidon/matchbox:latest \
+#    -address=0.0.0.0:8080 \
+#    -log-level=debug
